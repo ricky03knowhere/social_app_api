@@ -1,10 +1,13 @@
 const { db } = require("../db");
-const Screams = require("../models/Screams");
+// const Screams = require("../models/Screams");
 
 const addData = (req, res, next) => {
+  if (req.body.body.trim() === "")
+    return res.status(400).json({ error: "Please provide the body value" });
+
   const data = {
     body: req.body.body,
-    userHandle: req.body.userHandle,
+    userHandle: req.user.handle,
     createdAt: new Date().toISOString(),
   };
 
@@ -14,7 +17,7 @@ const addData = (req, res, next) => {
       res.json({ message: `Data with ID ${doc.id} successfully added.` });
     })
     .catch((err) => {
-      res.status(400).json({ error: "something error!" });
+      res.status(400).json({ error: "something went error!" });
 
       console.log(err.message);
     });

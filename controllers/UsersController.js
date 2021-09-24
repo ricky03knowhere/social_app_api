@@ -1,13 +1,18 @@
-const { db, app, auth } = require("../db");
+const { db, auth } = require("../db");
+const { signupValidator, loginValidator } = require("../utils/validators");
 
 const signup = (req, res) => {
   const newUser = {
     ...req.body,
   };
 
+  const { errors, valid } = signupValidator(newUser);
+
+  if (!valid) return res.status(400).json(errors);
+
   let token, userId;
 
-  db.doc(`/users/${newUser.userId}`)
+  db.doc(`/users/${newUser.handle}`)
     .get()
     .then((doc) => {
       if (doc.exists) {
@@ -34,7 +39,7 @@ const signup = (req, res) => {
         createdAt: new Date().toISOString(),
         userId,
       };
-      return db.doc(`/user/${newUser.handle}`).set(userCredentials);
+      return db.doc(`/users/${newUser.handle}`).set(userCredentials);
     })
     .then(() => {
       return res.status(201).json({ token });
@@ -49,4 +54,29 @@ const signup = (req, res) => {
     });
 };
 
-module.exports = { signup };
+const login = (req, res) => {
+  const userAuth = {
+    ...req.body,
+  };
+
+  const { errors, valid } = loginValidator(userAuth);
+
+  if (!valid) return res.status(400).json(errors);
+
+  auth
+    .signInWithEmailAndPassword(userAuth.email, userAuth.password)
+    .then((data) => data.user.getIdToken())
+    .then((token) => res.json({ token }))
+    .catch((err) => {
+      console.error(err);
+      if (err.code === "auth/wrong-password" || "auth/user-not-found") {
+        return res
+          .status(403)
+          .json({ general: "Invalid credentials, please try again." });
+      } else {
+        return res.status(400).json({ error: err.code });
+      }
+    });
+};
+
+module.exports = { signup, login };

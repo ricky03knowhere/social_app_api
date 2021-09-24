@@ -12,7 +12,6 @@ const {
   PORT,
   HOST,
   HOST_URL,
-  API_KEY,
   AUTH_DOMAIN,
   PROJECT_ID,
   STORAGE_BUCKET,
