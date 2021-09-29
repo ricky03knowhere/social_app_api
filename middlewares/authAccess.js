@@ -16,6 +16,7 @@ const authAccess = (req, res, next) => {
     .verifyIdToken(idToken)
     .then((decodedToken) => {
       req.user = decodedToken;
+      // console.log(req.user);
       return db
         .collection("users")
         .where("userId", "==", req.user.uid)
@@ -24,7 +25,7 @@ const authAccess = (req, res, next) => {
     })
     .then((data) => {
       req.user.handle = data.docs[0].data().handle;
-      // req.user.imageUrl = data.docs[0].data().imageUrl;
+      req.user.imageUrl = data.docs[0].data().imageUrl;
       return next();
     })
     .catch((err) => {

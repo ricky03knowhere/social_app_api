@@ -12,6 +12,7 @@ const {
   PORT,
   HOST,
   HOST_URL,
+  API_KEY,
   AUTH_DOMAIN,
   PROJECT_ID,
   STORAGE_BUCKET,
@@ -28,15 +29,17 @@ module.exports = {
   host: HOST,
   url: HOST_URL,
   firebaseConfig: {
-    apiKey: 'AIzaSyAgqJKvJ9viHhxeitGRWb6X3ubFpEf74SU',
+    apiKey: API_KEY,
     authDomain: AUTH_DOMAIN,
     projectId: PROJECT_ID,
     storageBucket: STORAGE_BUCKET,
     messagingSenderId: MESSAGING_SENDER_ID,
     appId: APP_ID,
-    measurementId: MEASSUREMENT_ID
+    measurementId: MEASSUREMENT_ID,
   },
   firestoreConfig: {
+    apiKey: API_KEY,
     credential: admin.credential.cert(serviceAccount),
+    storageBucket: STORAGE_BUCKET,
   },
 };
