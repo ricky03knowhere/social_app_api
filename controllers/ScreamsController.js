@@ -73,7 +73,7 @@ const getData = (req, res) => {
       return res.json(screamData);
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
       res.status(500).json({ errors: err.code });
     });
 };
@@ -103,7 +103,7 @@ const addComment = (req, res) => {
       res.json(comment);
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
       res.status(500).json({ errors: "Something went wrong" });
     });
 };
@@ -148,7 +148,7 @@ const addLike = (req, res) => {
       }
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
       res.status(500).json({ error: err.code });
     });
 };
@@ -190,7 +190,7 @@ const unLike = (req, res) => {
       }
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
       res.status(500).json({ error: err.code });
     });
 };
@@ -212,7 +212,7 @@ const deleteScream = (req, res) => {
     })
     .then(() => res.json({ message: "Scream deleted successfully" }))
     .catch((err) => {
-      console.log(err);
+      console.error(err);
       return res.status(500).json({ error: err.code });
     });
 };

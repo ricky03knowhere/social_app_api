@@ -38,6 +38,7 @@
     "fill-range": "^7.0.1",
     "firebase": "^8.0.0",
     "firebase-admin": "^9.11.1",
+    "firebase-functions": "^3.15.7",
     "forwarded": "^0.2.0",
     "fresh": "^0.5.2",
     "fs.realpath": "^1.0.0",

@@ -93,7 +93,7 @@ const addUserDetails = (req, res) => {
     .update(userDetails)
     .then(() => res.json({ message: "User details successfuly added." }))
     .catch((err) => {
-      console.log(err);
+      console.error(err);
       return res.status(500).json({ error: err.code });
     });
 };
