@@ -57,7 +57,9 @@ const signup = (req, res) => {
       if (err.code === "auth/email-already-in-use") {
         return res.status(400).json({ email: "email is already used" });
       } else {
-        return res.status(500).json({ error: err.code });
+        return res
+          .status(500)
+          .json({ general: "something wrong!, please try again." });
       }
     });
 };

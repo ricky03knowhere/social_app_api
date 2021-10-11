@@ -51,6 +51,7 @@
     "graceful-fs": "^4.2.8",
     "has-flag": "^3.0.0",
     "has-yarn": "^2.1.0",
+    "heroku": "^7.59.0",
     "http-cache-semantics": "^4.1.0",
     "http-errors": "^1.7.2",
     "http-parser-js": "^0.5.3",
