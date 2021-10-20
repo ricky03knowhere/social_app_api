@@ -154,6 +154,7 @@ const uploadImage = (req, res) => {
     imageToBeUploaded = { filepath, mimetype };
     file.pipe(fs.createWriteStream(filepath));
   });
+
   busboy.on("finish", () => {
     adminStore
       .upload(imageToBeUploaded.filepath, {

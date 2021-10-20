@@ -12,6 +12,6 @@ admin.initializeApp(firestoreConfig);
 const auth = app.auth();
 const db = admin.firestore();
 const userAuth = admin.auth();
-const adminStore = admin.storage().bucket();
+const adminStore = admin.storage().bucket(`${firebaseConfig.storageBucket}`);
 
 module.exports = { db, auth, userAuth, adminStore };
