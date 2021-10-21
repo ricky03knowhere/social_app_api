@@ -25,7 +25,7 @@ assert(PORT, "provide the server port");
 assert(HOST, "provide the server host");
 
 module.exports = {
-  port: PORT,
+  port: PORT || 3000,
   host: HOST,
   url: HOST_URL,
   firebaseConfig: {
