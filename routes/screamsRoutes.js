@@ -16,8 +16,8 @@ router.get("/screams", getAllData);
 router.get("/scream/:screamId", getData);
 router.post("/scream", authAccess, addData);
 router.delete("/scream/:screamId", authAccess, deleteScream);
-router.post("/scream/:screamId/like", authAccess, addLike);
-router.post("/scream/:screamId/unlike", authAccess, unLike);
+router.get("/scream/:screamId/like", authAccess, addLike);
+router.get("/scream/:screamId/unlike", authAccess, unLike);
 router.post("/scream/:screamId/comment", authAccess, addComment);
 
 module.exports = {
