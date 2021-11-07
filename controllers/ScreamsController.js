@@ -124,7 +124,7 @@ const addLike = (req, res) => {
     .then((data) => {
       if (data.exists) {
         screamData = data.data();
-        screamData.id = data.id;
+        screamData.screamId = data.id;
         return likeDoc.get();
       } else {
         return res.status(404).json({ error: "Scream not found" });
